@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volta — Case Study · Rashmi B S</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#fff;--bg2:#F5F5F7;--bg3:#FBFBFD;
+  --ink:#1D1D1F;--ink2:#6E6E73;--ink3:#A1A1A6;
+  --green:#1A7F3C;--gl:#F0FDF4;
+  --border:#D2D2D7;--bl:#E8E8ED;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;--r:20px;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(255,255,255,0.88);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.07)}
+.nl{font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.02em}
+.nm{display:flex;gap:28px}
+.nm a{font-size:13px;color:var(--ink2);text-decoration:none;transition:color .2s}
+.nm a:hover{color:var(--ink)}
+.nb{font-size:13px;font-weight:500;color:#fff;background:var(--ink);padding:8px 20px;border-radius:20px;text-decoration:none}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:140px 52px 100px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg svg{width:100%;height:100%}
+.hero-eyebrow{font-size:11px;font-weight:500;color:rgba(255,255,255,0.35);letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px}
+.hero-title{font-family:var(--serif);font-size:clamp(72px,12vw,140px);font-weight:400;color:#fff;line-height:.9;letter-spacing:-.04em;margin-bottom:32px;position:relative;z-index:1}
+.hero-title em{font-style:italic;color:#86efac;display:block}
+.hero-tagline{font-size:clamp(18px,2.5vw,26px);font-weight:300;color:rgba(255,255,255,.55);line-height:1.6;max-width:680px;margin-bottom:56px;position:relative;z-index:1}
+.hero-tagline strong{color:rgba(255,255,255,.85);font-weight:400}
+.hero-strip{display:flex;gap:48px;padding-top:36px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;position:relative;z-index:1}
+.hs .hs-l{font-size:10px;font-weight:500;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.hs .hs-v{font-size:15px;font-weight:500;color:rgba(255,255,255,.8)}
+
+/* STATS */
+.stats{background:var(--bg2);display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--bl)}
+.sc{padding:40px 36px;border-right:1px solid var(--bl)}
+.sc:last-child{border-right:none}
+.sn{font-family:var(--serif);font-size:52px;font-weight:400;color:var(--green);line-height:1;margin-bottom:8px}
+.sl{font-size:13px;color:var(--ink2);line-height:1.55}
+
+/* SECTION */
+.sec{padding:112px 52px}
+.max{max-width:1100px;margin:0 auto}
+.ey{font-size:11px;font-weight:500;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.sh{font-family:var(--serif);font-size:clamp(34px,4vw,54px);font-weight:400;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:18px}
+.sp{font-size:17px;font-weight:300;color:var(--ink2);line-height:1.8;max-width:680px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.two.flip{direction:rtl}.two.flip>*{direction:ltr}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.tag{font-size:13px;color:var(--ink);border:1px solid var(--border);padding:7px 14px;border-radius:10px}
+
+/* IMAGE CONTAINERS */
+.img-wrap{border-radius:var(--r);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08);border:1px solid var(--bl);height:320px;display:flex;align-items:center;justify-content:center;background:var(--bg2)}
+.img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* PROBLEM */
+.prob{background:var(--ink);padding:112px 52px;color:#fff}
+.prob .ey{color:#86efac}
+.prob .sh{color:#fff}
+.prob .sp{color:rgba(255,255,255,.45)}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px;border:1px solid rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden}
+.pc{padding:40px 36px;border-right:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);transition:background .25s}
+.pc:hover{background:rgba(255,255,255,.04)}
+.pc:nth-child(3n){border-right:none}
+.pc:nth-child(n+4){border-bottom:none}
+.pc-ico{width:32px;height:32px;color:#86efac;margin-bottom:20px}
+.pc-t{font-family:var(--serif);font-size:20px;font-weight:400;color:#fff;margin-bottom:12px;line-height:1.2}
+.pc-d{font-size:14px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75}
+
+/* INSIGHT CALLOUT */
+.callout{background:var(--green);border-radius:var(--r);padding:72px 80px;margin:56px auto;position:relative;overflow:hidden;max-width:1100px}
+.callout::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:rgba(255,255,255,.06);border-radius:50%}
+.cq{font-family:var(--serif);font-size:clamp(26px,3.5vw,42px);font-weight:400;color:#fff;line-height:1.3;max-width:740px;position:relative;z-index:1}
+.cq em{font-style:italic;color:#c6f6d5}
+
+/* PERSONAS - ARCHETYPE STORIES */
+.persona-sec{padding:112px 52px;background:var(--bg)}
+.archetype-stack{margin-top:80px;display:flex;flex-direction:column;gap:24px}
+
+.archetype{background:#fff;border:1px solid var(--bl);border-radius:24px;padding:48px;position:relative;overflow:hidden;transition:box-shadow .3s ease}
+.archetype:hover{box-shadow:0 12px 40px rgba(0,0,0,.06)}
+.archetype.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.archetype-top{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.archetype-num{font-family:var(--serif);font-size:42px;font-style:italic;color:var(--ink3);letter-spacing:-.02em;line-height:1}
+.archetype.dark .archetype-num{color:rgba(255,255,255,.25)}
+.archetype-tag{font-size:10px;font-weight:700;padding:6px 12px;border-radius:6px;letter-spacing:.14em}
+
+/* NEW: 3-column grid (photo, identity, story) */
+.archetype-grid{display:grid;grid-template-columns:280px 260px 1fr;gap:48px;align-items:start}
+
+/* Photo column */
+.archetype-photo{width:280px;height:340px;border-radius:18px;overflow:hidden;background:var(--bg2);position:relative}
+.archetype-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
+.archetype-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.08) 100%);pointer-events:none}
+.archetype-photo-caption{position:absolute;bottom:14px;left:14px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);padding:6px 11px;border-radius:6px;font-size:10px;font-weight:600;color:var(--ink);letter-spacing:.06em;text-transform:uppercase}
+.archetype.dark .archetype-photo-caption{background:rgba(29,29,31,.85);color:#fff}
+
+/* Identity column */
+.archetype-lead{padding-top:4px}
+.archetype-name{font-family:var(--serif);font-size:30px;font-weight:400;color:var(--ink);letter-spacing:-.02em;line-height:1.05;margin-bottom:8px}
+.archetype.dark .archetype-name{color:#fff}
+.archetype-real{font-size:13px;color:var(--ink2);margin-bottom:24px;font-weight:500;letter-spacing:.01em}
+.archetype.dark .archetype-real{color:rgba(255,255,255,.55)}
+
+.archetype-demo{padding:18px 0;border-top:1px solid var(--bl);border-bottom:1px solid var(--bl);margin-bottom:20px;display:flex;flex-direction:column;gap:8px}
+.archetype.dark .archetype-demo{border-color:rgba(255,255,255,.1)}
+.demo-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;gap:12px}
+.demo-k{color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;font-size:10px;font-weight:600;flex-shrink:0}
+.archetype.dark .demo-k{color:rgba(255,255,255,.4)}
+.demo-v{color:var(--ink);font-weight:500;text-align:right}
+.archetype.dark .demo-v{color:rgba(255,255,255,.9)}
+
+.tech-meter{padding-top:4px}
+.tech-label{font-size:10px;font-weight:600;color:var(--ink3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.archetype.dark .tech-label{color:rgba(255,255,255,.4)}
+.tech-bar{display:flex;gap:5px;margin-bottom:8px}
+.dot{width:22px;height:5px;border-radius:3px;background:var(--bl);display:inline-block}
+.archetype.dark .dot{background:rgba(255,255,255,.15)}
+.dot.filled{background:var(--green)}
+.archetype.dark .dot.filled{background:#86EFAC}
+.tech-val{font-size:12px;color:var(--ink2);font-style:italic;line-height:1.4}
+.archetype.dark .tech-val{color:rgba(255,255,255,.55)}
+
+/* Story column */
+.archetype-body{padding-top:4px}
+
+.dayinlife{margin-bottom:32px;padding:24px 28px;background:var(--bg3);border-radius:14px;border-left:3px solid var(--green)}
+.archetype.dark .dayinlife{background:rgba(255,255,255,.04);border-left-color:#86EFAC}
+.dayinlife-label{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.14em;margin-bottom:10px;text-transform:uppercase}
+.archetype.dark .dayinlife-label{color:#86EFAC}
+.dayinlife-text{font-family:var(--serif);font-size:17px;color:var(--ink);line-height:1.55;letter-spacing:-.005em;font-weight:400}
+.archetype.dark .dayinlife-text{color:rgba(255,255,255,.95)}
+.dayinlife-text em{font-style:italic;color:var(--green)}
+.archetype.dark .dayinlife-text em{color:#86EFAC}
+
+.dual-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--bl)}
+.archetype.dark .dual-col{border-color:rgba(255,255,255,.1)}
+.dual-label{font-size:11px;font-weight:700;letter-spacing:.12em;margin-bottom:12px}
+.dual-list{list-style:none;display:flex;flex-direction:column;gap:8px;padding:0}
+.dual-list li{font-size:13.5px;color:var(--ink);line-height:1.55;padding-left:14px;position:relative}
+.dual-list li::before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--ink3)}
+.dual-list.dark li{color:rgba(255,255,255,.85)}
+.dual-list.dark li::before{background:rgba(255,255,255,.4)}
+
+.archetype-solves{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.solves-label{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.14em;margin-right:6px}
+.archetype.dark .solves-label{color:#86EFAC}
+.solves-chip{font-size:12px;color:var(--green);background:var(--gl);padding:7px 13px;border-radius:7px;font-weight:500;border:1px solid rgba(26,127,60,.15)}
+.solves-chip.dark{color:#86EFAC;background:rgba(134,239,172,.1);border-color:rgba(134,239,172,.25)}
+
+@media (max-width:1100px){
+  .archetype-grid{grid-template-columns:240px 220px 1fr;gap:32px}
+  .archetype-photo{width:240px;height:300px}
+}
+@media (max-width:900px){
+  .persona-sec{padding:80px 24px}
+  .archetype{padding:28px}
+  .archetype-grid{grid-template-columns:1fr;gap:28px}
+  .archetype-photo{width:100%;height:280px}
+  .archetype-name{font-size:28px}
+  .dayinlife{padding:18px 20px}
+  .dayinlife-text{font-size:16px}
+  .dual-col{grid-template-columns:1fr;gap:24px}
+}
+
+/* RESEARCH SECTION */
+.research-sec{background:var(--bg3);padding:112px 52px}
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px}
+.research-card{background:var(--bg);border:1px solid var(--bl);border-radius:var(--r);padding:44px 40px;transition:all .3s}
+.research-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.06);border-color:var(--border);transform:translateY(-2px)}
+.research-label{font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
+.research-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;line-height:1.2}
+.research-desc{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.75;margin-bottom:24px}
+.research-methods{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.research-method{display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:300;color:var(--ink);line-height:1.6}
+.research-method svg{width:14px;height:14px;color:var(--green);flex-shrink:0;margin-top:3px}
+
+/* SOLUTION MAPPING */
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.sol{border-radius:var(--r);padding:36px 30px;border:1px solid var(--bl);background:var(--bg3);transition:all .3s}
+.sol:hover{border-color:var(--green);background:var(--bg);box-shadow:0 8px 28px rgba(26,127,60,.08);transform:translateY(-2px)}
+.sol-ico{width:30px;height:30px;color:var(--green);margin-bottom:18px}
+.sol-user{font-size:11px;font-weight:500;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.sol-t{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.25}
+.sol-d{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.7}
+
+/* IA DIAGRAM - FIXED OVERLAP */
+.ia-sec{background:var(--bg2);padding:112px 52px}
+.ia-container{margin-top:64px;display:flex;flex-direction:column;gap:32px;align-items:center}
+.ia-surfaces{display:flex;justify-content:center;gap:32px;width:100%;max-width:1100px}
+.ia-surface-card{background:var(--bg);border:1px solid var(--bl);border-radius:var(--r);padding:32px 28px;flex:1;max-width:320px}
+.ia-surface-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:20px;text-align:center}
+.ia-items{display:flex;flex-direction:column;gap:10px}
+.ia-item{font-size:13px;font-weight:300;color:var(--ink2);padding:10px 14px;background:var(--bg3);border-radius:10px;display:flex;align-items:center;gap:8px}
+.ia-item svg{width:14px;height:14px;color:var(--green);flex-shrink:0}
+.ia-database{background:var(--green);color:#fff;padding:40px 48px;border-radius:var(--r);text-align:center;max-width:640px;width:100%}
+.ia-db-title{font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:12px}
+.ia-db-desc{font-size:14px;font-weight:300;opacity:.85;line-height:1.75}
+.ia-arrows{display:flex;justify-content:center;gap:120px;margin:16px 0}
+.ia-arrow{color:var(--ink3);opacity:.3}
+
+/* DIFFERENTIATOR CARDS */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.diff{background:var(--bg3);border:1px solid var(--bl);border-radius:var(--r);padding:36px 30px;transition:all .3s}
+.diff:hover{background:var(--bg);border-color:var(--green);box-shadow:0 8px 28px rgba(26,127,60,.08);transform:translateY(-2px)}
+.diff-label{font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.diff-t{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:12px;line-height:1.25}
+.diff-d{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.75}
+.diff-highlight{font-size:13px;font-weight:500;color:var(--green);margin-top:16px;padding:10px 14px;background:var(--gl);border-radius:10px}
+
+/* ROI SECTION */
+.roi-sec{background:var(--bg);padding:112px 52px}
+.roi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.roi-card{background:var(--bg3);border:1px solid var(--bl);border-radius:var(--r);padding:36px 32px;transition:all .3s;position:relative;overflow:hidden}
+.roi-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--green);opacity:0;transition:opacity .3s}
+.roi-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.06);border-color:var(--green);transform:translateY(-2px)}
+.roi-card:hover::before{opacity:1}
+.roi-metric{font-family:var(--serif);font-size:48px;font-weight:400;color:var(--green);line-height:1;margin-bottom:12px}
+.roi-label{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.roi-desc{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.7}
+
+/* SERVICE GRID */
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.service-card{background:var(--bg);border:1px solid var(--bl);border-radius:var(--r);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;height:100%}
+.service-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px);border-color:var(--border)}
+.service-card .img-wrap{border-radius:0;border:none;box-shadow:none;border-bottom:1px solid var(--bl)}
+.service-content{padding:28px 24px;flex:1;display:flex;flex-direction:column}
+.service-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:12px;line-height:1.3}
+.service-desc{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.7}
+
+/* PHASES */
+.phase-sec{background:var(--bg);padding:112px 52px}
+.phase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:64px}
+.phase{border-radius:var(--r);padding:48px 40px;border:1px solid var(--bl);transition:all .3s;position:relative}
+.phase.p1{background:var(--gl);border-color:#c6f6d5}
+.phase.p2{background:var(--bg3)}
+.phase:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);transform:translateY(-4px)}
+.phase-num{position:absolute;top:24px;right:24px;font-family:var(--serif);font-size:72px;font-weight:400;color:var(--bl);line-height:1}
+.phase.p1 .phase-num{color:#d1fae5}
+.phase-label{font-size:10px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px;display:flex;align-items:center;gap:6px}
+.phase-label svg{width:12px;height:12px}
+.phase-title{font-family:var(--serif);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:16px;line-height:1.15}
+.phase-desc{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.75;margin-bottom:28px}
+.phase-items{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.pi{font-size:13px;font-weight:300;color:var(--ink);display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--bg);border-radius:10px}
+.phase.p1 .pi{background:rgba(255,255,255,.6)}
+.pi svg{width:14px;height:14px;color:var(--green);flex-shrink:0;margin-top:2px}
+.phase-status{font-size:11px;font-weight:500;color:var(--ink2);display:flex;align-items:center;gap:6px;padding:10px 16px;background:var(--bg);border-radius:12px;display:inline-flex}
+.phase.p1 .phase-status{background:rgba(255,255,255,.6)}
+.phase-status svg{width:12px;height:12px;color:var(--green)}
+
+/* PROCESS */
+.proc-sec{background:var(--bg2);padding:112px 52px}
+.proc-steps{display:flex;flex-direction:column;gap:24px;margin-top:64px;position:relative}
+.proc-steps::before{content:'';position:absolute;left:16px;top:32px;bottom:32px;width:2px;background:var(--bl)}
+.ps{display:flex;gap:24px;align-items:flex-start;position:relative;padding:20px 0}
+.ps-dot{width:34px;height:34px;background:var(--bg);border:2px solid var(--bl);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;transition:all .3s}
+.ps.on .ps-dot{background:var(--green);border-color:var(--green)}
+.ps-dot svg{width:16px;height:16px;color:var(--ink3);transition:color .3s}
+.ps.on .ps-dot svg{color:#fff}
+.ps-num{font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.ps-t{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px}
+.ps-d{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.75;max-width:640px}
+
+/* LEARNINGS */
+.learn-sec{padding:112px 52px}
+.learn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:64px}
+.lc{border-radius:var(--r);padding:40px 36px;border:1px solid var(--bl);background:var(--bg3);transition:all .3s}
+.lc:hover{border-color:var(--green);background:var(--bg);box-shadow:0 8px 28px rgba(26,127,60,.08);transform:translateY(-2px)}
+.lc-ico{width:28px;height:28px;color:var(--green);margin-bottom:20px}
+.lc-t{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:12px;line-height:1.3}
+.lc-d{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.75}
+
+/* FOOTER */
+footer{background:var(--ink);padding:80px 52px 48px;color:#fff;display:flex;justify-content:space-between;gap:80px}
+.ft{font-family:var(--serif);font-size:48px;font-weight:400;line-height:1.1;margin-bottom:24px}
+.ft em{font-style:italic;color:#86efac}
+.fd{font-size:15px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;max-width:480px;margin-bottom:40px}
+.fc{font-size:11px;font-weight:300;color:rgba(255,255,255,.25)}
+.flinks{display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+.fl{font-size:14px;font-weight:400;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s}
+.fl:hover{color:#86efac}
+.fl svg{width:12px;height:12px}
+
+/* REVEAL ANIMATION */
+.rv{opacity:0;transform:translateY(24px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}
+.d2{transition-delay:.2s}
+.d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 28px}
+  .hero,.sec,.prob,.ia-sec,.phase-sec,.proc-sec,.learn-sec,.roi-sec,.research-sec{padding:80px 28px}
+  .two,.persona-grid,.sol-grid,.phase-grid,.learn-grid,.diff-grid,.roi-grid,.research-grid,.service-grid{grid-template-columns:1fr;gap:24px}
+  .ia-surfaces{flex-direction:column;align-items:center}
+  .ia-arrows{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .sc{border-right:none;border-bottom:1px solid var(--bl)}
+  .sc:nth-child(2n){border-right:none}
+  .sc:last-child{border-bottom:none}
+  .prob-grid{grid-template-columns:1fr}
+  .pc{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
+  .pc:last-child{border-bottom:none}
+  footer{flex-direction:column;gap:48px}
+  .flinks{align-items:flex-start}
+  .img-wrap{height:280px}
+}
+
+/* ========== ADMIN TOOL SHOWCASE ========== */
+.admin-sec{background:var(--bg2);padding:120px 52px 140px;position:relative;overflow:hidden}
+.admin-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bl),transparent)}
+.admin-eyebrow-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.admin-tag{font-size:10px;font-weight:600;background:var(--ink);color:#fff;padding:6px 12px;border-radius:6px;letter-spacing:.14em}
+.admin-meta{font-size:12px;color:var(--ink2);letter-spacing:.04em}
+.admin-meta strong{color:var(--ink);font-weight:500}
+
+/* HERO SCREEN — Dashboard */
+.admin-hero{margin-top:64px;background:#fff;border-radius:24px;padding:24px;box-shadow:0 30px 80px rgba(29,29,31,.12),0 8px 24px rgba(29,29,31,.06);border:1px solid var(--bl);position:relative}
+.admin-hero-label{position:absolute;top:-14px;left:32px;background:var(--ink);color:#fff;font-size:10px;font-weight:600;letter-spacing:.16em;padding:6px 14px;border-radius:6px}
+.admin-screen-wrap{aspect-ratio:1440/1024;border-radius:16px;overflow:hidden;background:var(--bg3);position:relative}
+.admin-screen-wrap img{width:100%;height:100%;display:block;object-fit:cover;object-position:top}
+.admin-caption{display:flex;justify-content:space-between;align-items:flex-start;margin-top:28px;padding:0 12px;gap:48px}
+.admin-cap-l{flex:1;max-width:520px}
+.admin-cap-num{font-family:var(--serif);font-size:14px;color:var(--ink3);letter-spacing:.18em;margin-bottom:8px}
+.admin-cap-title{font-family:var(--serif);font-size:28px;color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.admin-cap-title em{font-style:italic;color:var(--green)}
+.admin-cap-desc{font-size:14px;color:var(--ink2);line-height:1.7}
+.admin-cap-r{display:flex;flex-direction:column;gap:14px;min-width:280px;padding-top:24px}
+.admin-decision{display:flex;gap:12px;font-size:13px;color:var(--ink);line-height:1.5}
+.admin-decision-dot{width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:7px;flex-shrink:0}
+.admin-decision strong{color:var(--ink);font-weight:600}
+
+/* GRID OF 3 SCREENS */
+.admin-grid{margin-top:80px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.admin-card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 20px 60px rgba(29,29,31,.10),0 4px 16px rgba(29,29,31,.05);border:1px solid var(--bl);transition:transform .4s ease,box-shadow .4s ease;position:relative}
+.admin-card:hover{transform:translateY(-4px);box-shadow:0 30px 80px rgba(29,29,31,.14),0 8px 20px rgba(29,29,31,.07)}
+.admin-card.wide{grid-column:1/-1}
+.admin-card-label{position:absolute;top:-12px;left:24px;background:#fff;border:1px solid var(--bl);color:var(--ink2);font-size:10px;font-weight:600;letter-spacing:.16em;padding:5px 12px;border-radius:6px}
+.admin-card .admin-screen-wrap{aspect-ratio:1440/1024;border-radius:14px}
+.admin-card-foot{padding:22px 12px 8px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.admin-card-l{flex:1}
+.admin-card-num{font-family:var(--serif);font-size:13px;color:var(--ink3);letter-spacing:.16em;margin-bottom:6px}
+.admin-card-title{font-family:var(--serif);font-size:22px;color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin-bottom:8px}
+.admin-card-title em{font-style:italic;color:var(--green)}
+.admin-card-desc{font-size:13px;color:var(--ink2);line-height:1.65;max-width:380px}
+.admin-card-tag{font-size:10px;font-weight:600;color:var(--green);background:var(--gl);padding:6px 10px;border-radius:6px;letter-spacing:.1em;white-space:nowrap;flex-shrink:0}
+
+/* RATIONALE CALLOUT */
+.admin-rationale{margin-top:96px;background:var(--ink);border-radius:24px;padding:80px 72px;color:#fff;position:relative;overflow:hidden}
+.admin-rationale::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(134,239,172,.12),transparent 70%);border-radius:50%}
+.admin-rationale-ey{font-size:11px;font-weight:500;color:#86efac;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px;position:relative;z-index:1}
+.admin-rationale-h{font-family:var(--serif);font-size:clamp(32px,4vw,46px);font-weight:400;color:#fff;line-height:1.15;letter-spacing:-.02em;margin-bottom:24px;max-width:780px;position:relative;z-index:1}
+.admin-rationale-h em{font-style:italic;color:#86efac}
+.admin-rationale-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:48px;padding-top:48px;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:1}
+.admin-r-num{font-family:var(--serif);font-size:48px;color:#86efac;line-height:1;margin-bottom:10px;letter-spacing:-.02em}
+.admin-r-label{font-size:13px;font-weight:500;color:#fff;margin-bottom:6px}
+.admin-r-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.6}
+
+@media (max-width:980px){
+  .admin-sec{padding:80px 24px 100px}
+  .admin-caption{flex-direction:column;gap:24px}
+  .admin-cap-r{min-width:0}
+  .admin-grid{grid-template-columns:1fr;gap:24px}
+  .admin-rationale{padding:48px 28px}
+  .admin-rationale-grid{grid-template-columns:1fr;gap:32px}
+  .admin-hero{padding:14px}
+  .admin-card{padding:12px}
+}
+
+/* ========== CUSTOMER WEBSITE SHOWCASE ========== */
+.web-sec{background:#fff;padding:120px 52px 140px;position:relative;overflow:hidden}
+.web-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bl),transparent)}
+.web-eyebrow-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.web-tag{font-size:10px;font-weight:600;background:var(--green);color:#fff;padding:6px 12px;border-radius:6px;letter-spacing:.14em}
+.web-meta{font-size:12px;color:var(--ink2);letter-spacing:.04em}
+.web-meta strong{color:var(--ink);font-weight:500}
+
+/* HERO PAIR: Home + Results side-by-side, transparent PNGs floating */
+.web-hero-pair{margin-top:80px;background:linear-gradient(180deg,#FBFBFD 0%,#F5F5F7 100%);border-radius:32px;padding:80px 48px 60px;position:relative;overflow:hidden}
+.web-hero-pair::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(26,127,60,.08),transparent 70%);pointer-events:none}
+.web-hero-pair-label{position:absolute;top:32px;left:48px;font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:.16em}
+.web-hero-pair-cap{position:absolute;top:32px;right:48px;font-size:11px;color:var(--ink3);letter-spacing:.02em;font-style:italic}
+.web-hero-phones{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;max-width:920px;margin:0 auto;position:relative;z-index:1}
+.web-phone-wrap{display:flex;justify-content:center;align-items:flex-end;position:relative}
+.web-phone-wrap img{max-width:100%;max-height:640px;width:auto;height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(0,0,0,.15)) drop-shadow(0 8px 16px rgba(0,0,0,.08))}
+.web-phone-caption{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);background:#fff;padding:7px 14px;border-radius:7px;font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--ink);text-transform:uppercase;box-shadow:0 4px 12px rgba(0,0,0,.06);border:1px solid var(--bl);white-space:nowrap}
+
+.web-hero-story{max-width:760px;margin:96px auto 0;text-align:center}
+.web-hero-num{font-family:var(--serif);font-size:13px;color:var(--ink3);letter-spacing:.18em;margin-bottom:14px}
+.web-hero-title{font-family:var(--serif);font-size:34px;color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin-bottom:16px}
+.web-hero-title em{font-style:italic;color:var(--green)}
+.web-hero-desc{font-size:15px;color:var(--ink2);line-height:1.75}
+
+/* Supporting screen — Services */
+.web-supporting{margin-top:120px;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.web-supporting-l{padding:24px 0}
+.web-supporting-num{font-family:var(--serif);font-size:13px;color:var(--ink3);letter-spacing:.18em;margin-bottom:12px}
+.web-supporting-title{font-family:var(--serif);font-size:32px;color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.web-supporting-title em{font-style:italic;color:var(--green)}
+.web-supporting-desc{font-size:14px;color:var(--ink2);line-height:1.75;margin-bottom:24px}
+.web-supporting-list{display:flex;flex-direction:column;gap:12px}
+.web-supporting-li{display:flex;gap:12px;font-size:13.5px;line-height:1.55}
+.web-supporting-li-icon{flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:7px}
+.web-supporting-li strong{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+.web-supporting-li span{color:var(--ink2)}
+.web-supporting-r{background:linear-gradient(180deg,#1D1D1F 0%,#2D2D30 100%);border-radius:24px;padding:56px 48px;display:flex;justify-content:center;position:relative;overflow:hidden}
+.web-supporting-r::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(134,239,172,.10),transparent 70%);border-radius:50%}
+.web-supporting-r img{max-width:100%;max-height:560px;width:auto;height:auto;display:block;filter:drop-shadow(0 25px 50px rgba(0,0,0,.4)) drop-shadow(0 6px 14px rgba(0,0,0,.2));position:relative;z-index:1}
+
+/* Design decisions */
+.web-decisions{margin-top:120px;background:var(--bg2);border-radius:24px;padding:56px 48px;display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.web-decisions-l h3{font-family:var(--serif);font-size:28px;color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.web-decisions-l h3 em{font-style:italic;color:var(--green)}
+.web-decisions-l p{font-size:13px;color:var(--ink2);line-height:1.65}
+.web-decisions-r{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px}
+.web-decision{padding-left:18px;border-left:2px solid var(--green)}
+.web-decision-h{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.web-decision-d{font-size:12.5px;color:var(--ink2);line-height:1.65}
+
+/* Lifestyle pair at bottom */
+.web-lifestyle{margin-top:120px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.web-lifestyle-card{border-radius:24px;overflow:hidden;aspect-ratio:4/5;position:relative}
+.web-lifestyle-card img{width:100%;height:100%;object-fit:cover;display:block}
+.web-lifestyle-label{position:absolute;top:24px;left:24px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);padding:8px 14px;border-radius:7px;font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--ink);text-transform:uppercase}
+.web-lifestyle-cap{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);padding:14px 18px;border-radius:10px;color:#fff;font-size:13px;line-height:1.5}
+
+.web-closer{margin-top:80px;text-align:center;max-width:680px;margin-left:auto;margin-right:auto}
+.web-closer-ey{font-size:11px;font-weight:500;color:var(--green);letter-spacing:.14em;margin-bottom:12px;text-transform:uppercase}
+.web-closer-h{font-family:var(--serif);font-size:32px;color:var(--ink);letter-spacing:-.02em;line-height:1.25;margin-bottom:16px}
+.web-closer-h em{font-style:italic;color:var(--green)}
+.web-closer-d{font-size:14px;color:var(--ink2);line-height:1.7}
+
+@media (max-width:980px){
+  .web-sec{padding:80px 24px 100px}
+  .web-hero-pair{padding:60px 24px 40px}
+  .web-hero-phones{grid-template-columns:1fr;gap:48px}
+  .web-hero-pair-label,.web-hero-pair-cap{position:static;text-align:center;margin-bottom:24px}
+  .web-hero-title{font-size:26px}
+  .web-supporting{grid-template-columns:1fr;gap:32px}
+  .web-decisions{grid-template-columns:1fr;gap:32px;padding:36px 28px}
+  .web-decisions-r{grid-template-columns:1fr;gap:24px}
+  .web-lifestyle{grid-template-columns:1fr;gap:16px}
+}
+
+/* ========== WHATSAPP AI SHOWCASE (user-designed screens) ========== */
+.wa-sec{background:#FBFBFD;padding:120px 52px 140px;position:relative;overflow:hidden}
+.wa-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bl),transparent)}
+.wa-eyebrow-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.wa-tag{font-size:10px;font-weight:600;background:#075E54;color:#fff;padding:6px 12px;border-radius:6px;letter-spacing:.14em}
+.wa-meta{font-size:12px;color:var(--ink2);letter-spacing:.04em}
+.wa-meta strong{color:var(--ink);font-weight:500}
+
+/* Hero pair: annotated screen + clean device view */
+.wa-hero{margin-top:72px;display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}
+.wa-hero-l{background:linear-gradient(135deg,#F0FDF4 0%,#FBFBFD 100%);border-radius:24px;padding:40px;position:relative;overflow:hidden;border:1px solid var(--bl)}
+.wa-hero-l::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;background:radial-gradient(circle,rgba(7,94,84,.08),transparent 70%);border-radius:50%}
+.wa-hero-l img{width:100%;height:auto;display:block;border-radius:12px;position:relative;z-index:1;box-shadow:0 30px 60px rgba(0,0,0,.10),0 4px 12px rgba(0,0,0,.04)}
+.wa-hero-label{position:absolute;top:24px;left:24px;background:#075E54;color:#fff;font-size:10px;font-weight:700;letter-spacing:.16em;padding:6px 12px;border-radius:6px;z-index:2}
+.wa-hero-r{padding:8px 0}
+.wa-hero-num{font-family:var(--serif);font-size:14px;color:var(--ink3);letter-spacing:.18em;margin-bottom:14px}
+.wa-hero-title{font-family:var(--serif);font-size:clamp(32px,3vw,42px);color:var(--ink);letter-spacing:-.02em;line-height:1.1;margin-bottom:18px}
+.wa-hero-title em{font-style:italic;color:#075E54}
+.wa-hero-desc{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:28px}
+.wa-decisions{display:flex;flex-direction:column;gap:14px}
+.wa-decision{display:flex;gap:12px;font-size:14px;line-height:1.55}
+.wa-decision-num{font-family:var(--serif);font-style:italic;color:#075E54;font-size:18px;flex-shrink:0;min-width:24px;line-height:1.3}
+.wa-decision strong{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+.wa-decision span{color:var(--ink2)}
+
+/* Mid divider: clean device shot */
+.wa-device{margin-top:80px;margin-bottom:80px;display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center}
+.wa-device-l{padding:8px 0}
+.wa-device-r{display:flex;justify-content:center}
+.wa-device-r img{width:auto;max-width:100%;max-height:680px;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,.14),0 6px 16px rgba(0,0,0,.06);border:1px solid var(--bl)}
+.wa-quote{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);color:var(--ink);line-height:1.35;letter-spacing:-.01em;margin-bottom:18px}
+.wa-quote em{font-style:italic;color:#075E54}
+.wa-quote-cap{font-size:12px;font-weight:500;color:var(--ink3);letter-spacing:.14em;margin-bottom:14px}
+
+/* Scenarios image: full width feature */
+.wa-scenarios{margin-top:96px;background:#fff;border-radius:24px;padding:48px 40px 40px;border:1px solid var(--bl);box-shadow:0 8px 28px rgba(0,0,0,.04)}
+.wa-scenarios-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;gap:40px;flex-wrap:wrap}
+.wa-scenarios-l{flex:1;min-width:280px}
+.wa-scenarios-num{font-family:var(--serif);font-size:13px;color:var(--ink3);letter-spacing:.16em;margin-bottom:10px}
+.wa-scenarios-title{font-family:var(--serif);font-size:32px;color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.wa-scenarios-title em{font-style:italic;color:#075E54}
+.wa-scenarios-desc{font-size:14px;color:var(--ink2);line-height:1.7;max-width:520px}
+.wa-scenarios-tag{font-size:10px;font-weight:600;color:#075E54;background:#F0FDF4;padding:7px 12px;border-radius:6px;letter-spacing:.14em;white-space:nowrap;height:fit-content}
+.wa-scenarios-img{border-radius:14px;overflow:hidden;background:#F5F5F7;padding:8px}
+.wa-scenarios-img img{width:100%;height:auto;display:block;border-radius:8px}
+
+/* Stats strip — green WhatsApp brand color */
+.wa-stats{margin-top:80px;background:#075E54;border-radius:24px;padding:64px 56px;color:#fff;position:relative;overflow:hidden}
+.wa-stats::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(134,239,172,.15),transparent 70%);border-radius:50%}
+.wa-stats-ey{font-size:11px;font-weight:500;color:#86efac;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px;position:relative;z-index:1}
+.wa-stats-h{font-family:var(--serif);font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#fff;line-height:1.15;letter-spacing:-.02em;margin-bottom:48px;max-width:720px;position:relative;z-index:1}
+.wa-stats-h em{font-style:italic;color:#86efac}
+.wa-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:1;padding-top:36px;border-top:1px solid rgba(255,255,255,.12)}
+.wa-stat-num{font-family:var(--serif);font-size:54px;color:#86efac;line-height:1;margin-bottom:10px;letter-spacing:-.02em}
+.wa-stat-lbl{font-size:13px;font-weight:500;color:#fff;margin-bottom:4px}
+.wa-stat-desc{font-size:11.5px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.55}
+
+@media (max-width:980px){
+  .wa-sec{padding:80px 24px 100px}
+  .wa-hero{grid-template-columns:1fr;gap:32px}
+  .wa-hero-l{padding:24px}
+  .wa-device{grid-template-columns:1fr;gap:32px}
+  .wa-device-r{order:-1}
+  .wa-scenarios{padding:28px 20px 20px}
+  .wa-stats{padding:48px 28px}
+  .wa-stats-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .wa-stat-num{font-size:42px}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SPRITE -->
+<svg style="display:none">
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+<symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+<symbol id="i-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+<symbol id="i-pal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></symbol>
+<symbol id="i-puz" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.402 2.402 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.23 8.77c.24-.24.581-.353.917-.303.515.077.877.528 1.073 1.01a2.5 2.5 0 1 0 3.259-3.259c-.482-.196-.933-.558-1.01-1.073-.05-.336.062-.676.303-.917l1.525-1.525A2.402 2.402 0 0 1 12 1.998c.617 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.18-.894.527-.967 1.02Z"/></symbol>
+<symbol id="i-type" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></symbol>
+<symbol id="i-bar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+<symbol id="i-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></symbol>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <div class="nl">Rashmi B S</div>
+  <div class="nm">
+    <a href="#problem">Problem</a>
+    <a href="#research">Research</a>
+    <a href="#solution">Solution</a>
+    <a href="#learnings">Learnings</a>
+  </div>
+  <a href="mailto:rashmi@email.com" class="nb">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1440" height="900" fill="#1D1D1F"/>
+      <circle cx="320" cy="180" r="240" fill="url(#g1)" opacity="0.08"/>
+      <circle cx="1120" cy="720" r="280" fill="url(#g2)" opacity="0.06"/>
+      <defs>
+        <radialGradient id="g1"><stop stop-color="#86efac"/><stop offset="1" stop-color="#1D1D1F" stop-opacity="0"/></radialGradient>
+        <radialGradient id="g2"><stop stop-color="#86efac"/><stop offset="1" stop-color="#1D1D1F" stop-opacity="0"/></radialGradient>
+      </defs>
+    </svg>
+  </div>
+  <div style="position:relative;z-index:1;max-width:900px">
+    <div class="hero-eyebrow rv">UX CASE STUDY · 2026</div>
+    <h1 class="hero-title rv d1">Volta<em>Battery</em></h1>
+    <p class="hero-tagline rv d2">Most apps are built for people who already know what they want. <strong>Volta was built for the person whose car won't start at 8pm — who doesn't know their battery model, doesn't speak English, and just needs help. Now.</strong></p>
+    <div class="hero-strip">
+      <div class="hs"><div class="hs-l">Role</div><div class="hs-v">UX/UI Designer</div></div>
+      <div class="hs"><div class="hs-l">Timeline</div><div class="hs-v">3 months · Solo project</div></div>
+      <div class="hs"><div class="hs-l">Deliverables</div><div class="hs-v">Website · WhatsApp AI · Admin</div></div>
+      <div class="hs"><div class="hs-l">Tools</div><div class="hs-v">Figma · Research · Prototyping</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="sc rv"><div class="sn">4</div><div class="sl">User types with completely different needs and emotional states</div></div>
+  <div class="sc rv d1"><div class="sn">3</div><div class="sl">Digital surfaces designed from scratch — one database</div></div>
+  <div class="sc rv d2"><div class="sn">4</div><div class="sl">Languages supported in WhatsApp interface</div></div>
+  <div class="sc rv d3"><div class="sn">2</div><div class="sl">Phase vision — from one shop to hyperlocal platform</div></div>
+</section>
+
+<!-- CONTEXT -->
+<section class="sec">
+  <div class="max">
+    <div class="rv" style="margin-bottom:48px">
+      <div class="ey">Context</div>
+      <h2 class="sh">A local battery shop drowning in support calls</h2>
+      <p class="sp">Sri Raghavendra Battery Point is a battery distributor in Jayanagar, Bangalore. They sell automobile batteries (car, bike, inverter) from multiple brands. Every customer question — "Do you have X battery?", "How much?", "Where are you located?" — comes as a phone call. The owner handles 30-50 calls daily, often repeating the same information.</p>
+      <div class="tags">
+        <div class="tag">Small business</div>
+        <div class="tag">Phone-dependent</div>
+        <div class="tag">Multilingual customers</div>
+        <div class="tag">Emergency services</div>
+      </div>
+    </div>
+    <div class="img-wrap rv" style="max-width:100%;margin:0 auto">
+      <img src="images/sri-raghavendra-battery-point-jayanagar-bangalore-automobile-battery-dealers-0km2e0g2bh.avif" alt="Battery shop storefront">
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="prob" id="problem">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">The Problem</div>
+      <h2 class="sh">No online presence.<br>No self-service.<br>Just endless phone calls.</h2>
+      <p class="sp">The business had no digital footprint. Customers couldn't check prices or availability on their own. Every enquiry required a phone call — disrupting operations, creating wait times, and making it impossible for the owner to focus on in-store customers.</p>
+    </div>
+    <div class="prob-grid">
+      <div class="pc rv">
+        <svg class="pc-ico"><use href="#i-search"/></svg>
+        <div class="pc-t">No online discovery</div>
+        <div class="pc-d">Potential customers couldn't find the shop online. No website, no Google presence, no way to browse inventory.</div>
+      </div>
+      <div class="pc rv d1">
+        <svg class="pc-ico"><use href="#i-phone"/></svg>
+        <div class="pc-t">Phone-only support</div>
+        <div class="pc-d">Every customer interaction required a phone call. Repetitive questions consumed hours daily.</div>
+      </div>
+      <div class="pc rv d2">
+        <svg class="pc-ico"><use href="#i-clock"/></svg>
+        <div class="pc-t">No 24/7 availability</div>
+        <div class="pc-d">Customers with emergencies at night had no way to get help or information.</div>
+      </div>
+      <div class="pc rv">
+        <svg class="pc-ico"><use href="#i-globe"/></svg>
+        <div class="pc-t">Language barriers</div>
+        <div class="pc-d">Customers spoke Kannada, Hindi, Tamil, English. Manual support struggled with regional language queries.</div>
+      </div>
+      <div class="pc rv d1">
+        <svg class="pc-ico"><use href="#i-edit"/></svg>
+        <div class="pc-t">Manual price updates</div>
+        <div class="pc-d">When battery prices changed, the owner had to update customers manually — no system to sync data.</div>
+      </div>
+      <div class="pc rv d2">
+        <svg class="pc-ico"><use href="#i-alert"/></svg>
+        <div class="pc-t">Lost emergency leads</div>
+        <div class="pc-d">Customers with dead batteries often called competitors because they couldn't reach the shop after hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHT -->
+<div class="callout rv">
+  <div class="cq">"I spend half my day answering the same questions. <em>Do you have this battery? How much? Where are you?</em> I need a system that answers for me."</div>
+</div>
+
+<!-- RESEARCH SECTION - EXPANDED -->
+<section class="research-sec" id="research">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">Research Methodology</div>
+      <h2 class="sh">Understanding the problem space through primary and secondary research</h2>
+      <p class="sp">Before jumping to solutions, I conducted comprehensive research to understand the battery retail industry, small business digital transformation challenges, and customer behavior patterns. This dual approach — combining primary user research with secondary industry research — ensured every design decision was grounded in real insights.</p>
+    </div>
+    <div class="research-grid">
+      <div class="research-card rv">
+        <div class="research-label">Primary Research</div>
+        <div class="research-title">Direct user insights</div>
+        <div class="research-desc">Conducted firsthand research to gather qualitative and quantitative data directly from the shop owner, customers, and observing real interactions. This helped identify specific pain points, user behaviors, and business constraints.</div>
+        <div class="research-methods">
+          <div class="research-method"><svg><use href="#i-mic"/></svg>Shop owner interviews — 3 in-depth sessions covering business operations, customer patterns, and pain points</div>
+          <div class="research-method"><svg><use href="#i-phone"/></svg>Live call observation — Monitored 20+ customer support calls to understand query patterns and emotional states</div>
+          <div class="research-method"><svg><use href="#i-users"/></svg>Customer intercept interviews — Spoke with 8 customers at the shop to understand their needs and frustrations</div>
+          <div class="research-method"><svg><use href="#i-map"/></svg>Contextual inquiry — Spent time at the shop observing workflows, customer interactions, and operational challenges</div>
+        </div>
+      </div>
+
+      <div class="research-card rv d1">
+        <div class="research-label">Secondary Research</div>
+        <div class="research-title">Industry & market analysis</div>
+        <div class="research-desc">Analyzed existing research, industry reports, and case studies to understand broader market trends, digital transformation patterns, and validated design approaches. This provided context beyond the single business.</div>
+        <div class="research-methods">
+          <div class="research-method"><svg><use href="#i-book"/></svg>Industry reports — Analyzed digital transformation statistics showing small businesses (under 100 employees) are 2.7x more successful than enterprises</div>
+          <div class="research-method"><svg><use href="#i-chart"/></svg>ROI benchmarks — Studied manufacturing and retail digital transformation projects achieving 30-35% average ROI within 12-18 months</div>
+          <div class="research-method"><svg><use href="#i-search"/></svg>Competitive analysis — Reviewed WhatsApp Business API implementations, multilingual chatbots, and emergency service UX patterns</div>
+          <div class="research-method"><svg><use href="#i-globe"/></svg>Market research — Studied battery industry trends, e-commerce adoption patterns in Bangalore, and hyperlocal commerce platforms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS - ARCHETYPE STORIES -->
+<section class="persona-sec">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">User Research</div>
+      <h2 class="sh">Four archetypes.<br>Four different realities.</h2>
+      <p class="sp">Through interviews with the shop owner and observation of 20+ live customer calls, four user archetypes emerged — each defined not just by what they want, but by what they <em>can't</em> easily do. Their literacy levels, languages, and emotional states differ so completely that a single interface couldn't serve them all.</p>
+    </div>
+
+    <div class="archetype-stack">
+
+      <!-- ARCHETYPE 1: THE PLANNER -->
+      <article class="archetype rv">
+        <div class="archetype-top">
+          <div class="archetype-num">01</div>
+          <div class="archetype-tag" style="background:#FEF3C7;color:#A16207">THE PLANNER · 40%</div>
+        </div>
+        <div class="archetype-grid">
+          <div class="archetype-photo">
+            <img src="images/volta-persona-rajesh.jpg" alt="Rajesh researching battery options on his laptop">
+            <div class="archetype-photo-caption">RESEARCHING · SATURDAY</div>
+          </div>
+          <div class="archetype-lead">
+            <h3 class="archetype-name">"Cross-check Rajesh"</h3>
+            <p class="archetype-real">Rajesh Kumar · 42</p>
+            <div class="archetype-demo">
+              <div class="demo-row"><span class="demo-k">Role</span><span class="demo-v">IT manager</span></div>
+              <div class="demo-row"><span class="demo-k">Location</span><span class="demo-v">Jayanagar, Bangalore</span></div>
+              <div class="demo-row"><span class="demo-k">Vehicle</span><span class="demo-v">Maruti Swift 2020</span></div>
+              <div class="demo-row"><span class="demo-k">Speaks</span><span class="demo-v">English · Hindi</span></div>
+            </div>
+            <div class="tech-meter">
+              <div class="tech-label">Tech-savviness</div>
+              <div class="tech-bar">
+                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+              </div>
+              <div class="tech-val">High · researches everything online</div>
+            </div>
+          </div>
+          <div class="archetype-body">
+            <div class="dayinlife">
+              <div class="dayinlife-label">A DAY IN THE LIFE</div>
+              <p class="dayinlife-text">It's a Saturday morning and Rajesh has noticed his car cranking slower for the past two weeks. He pulls up three browser tabs — Amaron's website, Exide's, and a comparison forum — and starts a spreadsheet to track price, warranty, and Ah ratings. <em>The last thing he wants to do is call a shop and have someone read prices to him over the phone.</em></p>
+            </div>
+            <div class="dual-col">
+              <div>
+                <div class="dual-label" style="color:#1A7F3C">↑ GOALS</div>
+                <ul class="dual-list">
+                  <li>Compare battery options side by side</li>
+                  <li>Verify prices and warranty terms</li>
+                  <li>Find the exact fit for his Swift</li>
+                </ul>
+              </div>
+              <div>
+                <div class="dual-label" style="color:#DC2626">↓ FRUSTRATIONS</div>
+                <ul class="dual-list">
+                  <li>Can't browse without calling</li>
+                  <li>No price transparency online</li>
+                  <li>Unclear which battery actually fits</li>
+                </ul>
+              </div>
+            </div>
+            <div class="archetype-solves">
+              <span class="solves-label">DESIGN SOLVES →</span>
+              <span class="solves-chip">Browsable website</span>
+              <span class="solves-chip">Price comparison</span>
+              <span class="solves-chip">Spec sheets</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ARCHETYPE 2: THE PANICKER -->
+      <article class="archetype dark rv">
+        <div class="archetype-top">
+          <div class="archetype-num" style="color:rgba(255,255,255,.3)">02</div>
+          <div class="archetype-tag" style="background:#FEE2E2;color:#991B1B">THE PANICKER · 25%</div>
+        </div>
+        <div class="archetype-grid">
+          <div class="archetype-photo">
+            <img src="images/volta-persona-priya.jpg" alt="Priya stressed in her car at night">
+            <div class="archetype-photo-caption">PARKING LOT · 8:42 PM</div>
+          </div>
+          <div class="archetype-lead">
+            <h3 class="archetype-name">"Stranded Priya"</h3>
+            <p class="archetype-real">Priya Sharma · 29</p>
+            <div class="archetype-demo">
+              <div class="demo-row"><span class="demo-k">Role</span><span class="demo-v">Marketing exec</span></div>
+              <div class="demo-row"><span class="demo-k">Location</span><span class="demo-v">Indiranagar, Bangalore</span></div>
+              <div class="demo-row"><span class="demo-k">Vehicle</span><span class="demo-v">Hyundai i20 2019</span></div>
+              <div class="demo-row"><span class="demo-k">Speaks</span><span class="demo-v">English · Hindi</span></div>
+            </div>
+            <div class="tech-meter">
+              <div class="tech-label">Tech-savviness</div>
+              <div class="tech-bar">
+                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+              </div>
+              <div class="tech-val">High · but useless when panicking</div>
+            </div>
+          </div>
+          <div class="archetype-body">
+            <div class="dayinlife">
+              <div class="dayinlife-label">A DAY IN THE LIFE</div>
+              <p class="dayinlife-text">It's 8:42 PM and Priya is in an underground parking lot after a late client dinner. Her car cranks once, then clicks, then nothing — and she doesn't have her father's number, the shop's number, or any roadside assistance saved. <em>She opens WhatsApp because it's the only app she trusts under stress, and types four words: "my car won't start."</em></p>
+            </div>
+            <div class="dual-col">
+              <div>
+                <div class="dual-label" style="color:#86EFAC">↑ GOALS</div>
+                <ul class="dual-list dark">
+                  <li>Get immediate, confirmed help</li>
+                  <li>Share her exact location effortlessly</li>
+                  <li>Trust that someone is actually coming</li>
+                </ul>
+              </div>
+              <div>
+                <div class="dual-label" style="color:#FCA5A5">↓ FRUSTRATIONS</div>
+                <ul class="dual-list dark">
+                  <li>Can't explain her location clearly</li>
+                  <li>Doesn't want to talk to anyone</li>
+                  <li>No fallback when the shop is closed</li>
+                </ul>
+              </div>
+            </div>
+            <div class="archetype-solves dark">
+              <span class="solves-label" style="color:#86EFAC">DESIGN SOLVES →</span>
+              <span class="solves-chip dark">Emergency CTA in chat</span>
+              <span class="solves-chip dark">Live location share</span>
+              <span class="solves-chip dark">Technician tracking</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ARCHETYPE 3: THE VOICE-FIRST -->
+      <article class="archetype rv">
+        <div class="archetype-top">
+          <div class="archetype-num">03</div>
+          <div class="archetype-tag" style="background:#DCFCE7;color:#15803D">THE VOICE-FIRST · 20%</div>
+        </div>
+        <div class="archetype-grid">
+          <div class="archetype-photo">
+            <img src="images/volta-persona-kamala.png" alt="Kamala with her scooter in the Jayanagar market">
+            <div class="archetype-photo-caption">MARKET RUN · 5 AM</div>
+          </div>
+          <div class="archetype-lead">
+            <h3 class="archetype-name">"Auntie Kamala"</h3>
+            <p class="archetype-real">Kamala Bai · 58</p>
+            <div class="archetype-demo">
+              <div class="demo-row"><span class="demo-k">Role</span><span class="demo-v">Tea stall owner</span></div>
+              <div class="demo-row"><span class="demo-k">Location</span><span class="demo-v">Jayanagar 4th block</span></div>
+              <div class="demo-row"><span class="demo-k">Vehicle</span><span class="demo-v">Honda Activa</span></div>
+              <div class="demo-row"><span class="demo-k">Speaks</span><span class="demo-v">Kannada only</span></div>
+            </div>
+            <div class="tech-meter">
+              <div class="tech-label">Tech-savviness</div>
+              <div class="tech-bar">
+                <span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <div class="tech-val">Low · uses voice notes, not text</div>
+            </div>
+          </div>
+          <div class="archetype-body">
+            <div class="dayinlife">
+              <div class="dayinlife-label">A DAY IN THE LIFE</div>
+              <p class="dayinlife-text">Kamala has been running her chai stall since 1991 and her Activa is how she gets to the market every morning at 5 AM. The scooter wouldn't start today, so she asked her neighbour's son to look — he tells her the battery needs replacing but she'll need to call the shop herself. <em>Her son is in Mysore, she can't read the English signboards, and the idea of typing into a phone makes her hand her glasses to whoever is nearest.</em></p>
+            </div>
+            <div class="dual-col">
+              <div>
+                <div class="dual-label" style="color:#1A7F3C">↑ GOALS</div>
+                <ul class="dual-list">
+                  <li>Replace her scooter battery today</li>
+                  <li>Be helped in Kannada, not Hindi</li>
+                  <li>Avoid asking strangers for help</li>
+                </ul>
+              </div>
+              <div>
+                <div class="dual-label" style="color:#DC2626">↓ FRUSTRATIONS</div>
+                <ul class="dual-list">
+                  <li>Cannot read English text at all</li>
+                  <li>Low literacy even in Kannada</li>
+                  <li>Intimidated by typed forms and apps</li>
+                </ul>
+              </div>
+            </div>
+            <div class="archetype-solves">
+              <span class="solves-label">DESIGN SOLVES →</span>
+              <span class="solves-chip">Auto-play voice greeting</span>
+              <span class="solves-chip">Numbered language picker</span>
+              <span class="solves-chip">Native-script buttons</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ARCHETYPE 4: THE CLUELESS -->
+      <article class="archetype rv">
+        <div class="archetype-top">
+          <div class="archetype-num">04</div>
+          <div class="archetype-tag" style="background:#DBEAFE;color:#1D4ED8">THE CLUELESS · 15%</div>
+        </div>
+        <div class="archetype-grid">
+          <div class="archetype-photo">
+            <img src="images/volta-persona-arjun.webp" alt="Arjun calling for help with his car hood open">
+            <div class="archetype-photo-caption">HOOD OPEN · NO IDEA</div>
+          </div>
+          <div class="archetype-lead">
+            <h3 class="archetype-name">"Confused Arjun"</h3>
+            <p class="archetype-real">Arjun M. · 32</p>
+            <div class="archetype-demo">
+              <div class="demo-row"><span class="demo-k">Role</span><span class="demo-v">Software engineer</span></div>
+              <div class="demo-row"><span class="demo-k">Location</span><span class="demo-v">HSR Layout, Bangalore</span></div>
+              <div class="demo-row"><span class="demo-k">Vehicle</span><span class="demo-v">Inherited 2016 Maruti</span></div>
+              <div class="demo-row"><span class="demo-k">Speaks</span><span class="demo-v">English (fluent)</span></div>
+            </div>
+            <div class="tech-meter">
+              <div class="tech-label">Tech-savviness</div>
+              <div class="tech-bar">
+                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+              </div>
+              <div class="tech-val">Expert · but zero car knowledge</div>
+            </div>
+          </div>
+          <div class="archetype-body">
+            <div class="dayinlife">
+              <div class="dayinlife-label">A DAY IN THE LIFE</div>
+              <p class="dayinlife-text">Arjun inherited his father's 8-year-old Maruti six months ago and has been intermittently struggling to start it on cold mornings. He's googled "car not starting" enough times to know it's probably the battery, but every search result demands specs he doesn't have — "65Ah DIN65L," "CCA rating," "vehicle compatibility." <em>He opens the hood for the first time in his life, takes a slightly tilted photo of the battery, and hopes someone — or something — can read the label for him.</em></p>
+            </div>
+            <div class="dual-col">
+              <div>
+                <div class="dual-label" style="color:#1A7F3C">↑ GOALS</div>
+                <ul class="dual-list">
+                  <li>Identify his current battery without jargon</li>
+                  <li>Get a plain-language replacement option</li>
+                  <li>Avoid being upsold by anyone</li>
+                </ul>
+              </div>
+              <div>
+                <div class="dual-label" style="color:#DC2626">↓ FRUSTRATIONS</div>
+                <ul class="dual-list">
+                  <li>Doesn't know car model details</li>
+                  <li>Doesn't know any battery brand</li>
+                  <li>Specs feel like a foreign language</li>
+                </ul>
+              </div>
+            </div>
+            <div class="archetype-solves">
+              <span class="solves-label">DESIGN SOLVES →</span>
+              <span class="solves-chip">Photo battery detection</span>
+              <span class="solves-chip">Branching scenarios</span>
+              <span class="solves-chip">Plain-language results</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="sec" id="solution">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">Solution Strategy</div>
+      <h2 class="sh">One database.<br>Three surfaces.<br>Every user served.</h2>
+      <p class="sp">Instead of designing one compromised product, I created three purpose-built interfaces — each optimized for a specific user type and use case. All three pull from the same database, so when the owner updates a price once, it syncs everywhere.</p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol rv">
+        <svg class="sol-ico"><use href="#i-globe"/></svg>
+        <div class="sol-user">For Planners + Walk-ins</div>
+        <div class="sol-t">Customer Website</div>
+        <div class="sol-d">Battery finder, service info, location map, opening hours. For customers who want to browse and research before committing.</div>
+      </div>
+      <div class="sol rv d1">
+        <svg class="sol-ico"><use href="#i-msg"/></svg>
+        <div class="sol-user">For Quick Queries + Emergencies</div>
+        <div class="sol-t">WhatsApp AI Assistant</div>
+        <div class="sol-d">Instant answers in 4 languages. Handles price queries, photo-based battery detection, emergency jumpstart booking, and location sharing.</div>
+      </div>
+      <div class="sol rv d2">
+        <svg class="sol-ico"><use href="#i-lock"/></svg>
+        <div class="sol-user">For Shop Owner</div>
+        <div class="sol-t">Admin Dashboard</div>
+        <div class="sol-d">Price editor, enquiry log, lead tracking. Update battery prices once — changes sync to website and WhatsApp instantly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IA - FIXED OVERLAP -->
+<section class="ia-sec">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">Information Architecture</div>
+      <h2 class="sh">System thinking before screen thinking</h2>
+      <p class="sp">The most important design decision wasn't visual — it was architectural. Three surfaces, one shared database. This structure enables Phase 2 (multi-shop platform) without rebuilding from scratch.</p>
+    </div>
+    <div class="ia-container">
+      <div class="ia-surfaces">
+        <div class="ia-surface-card rv">
+          <div class="ia-surface-title">Website</div>
+          <div class="ia-items">
+            <div class="ia-item"><svg><use href="#i-search"/></svg>Battery Finder</div>
+            <div class="ia-item"><svg><use href="#i-globe"/></svg>Services</div>
+            <div class="ia-item"><svg><use href="#i-map"/></svg>Location</div>
+            <div class="ia-item"><svg><use href="#i-phone"/></svg>Contact</div>
+          </div>
+        </div>
+        <div class="ia-surface-card rv d1">
+          <div class="ia-surface-title">WhatsApp AI</div>
+          <div class="ia-items">
+            <div class="ia-item"><svg><use href="#i-msg"/></svg>Price Inquiry</div>
+            <div class="ia-item"><svg><use href="#i-search"/></svg>Photo Detect</div>
+            <div class="ia-item"><svg><use href="#i-zap"/></svg>Emergency</div>
+            <div class="ia-item"><svg><use href="#i-globe"/></svg>4 Languages</div>
+          </div>
+        </div>
+        <div class="ia-surface-card rv d2">
+          <div class="ia-surface-title">Admin Tool</div>
+          <div class="ia-items">
+            <div class="ia-item"><svg><use href="#i-edit"/></svg>Price Editor</div>
+            <div class="ia-item"><svg><use href="#i-db"/></svg>Inventory</div>
+            <div class="ia-item"><svg><use href="#i-users"/></svg>Enquiries</div>
+            <div class="ia-item"><svg><use href="#i-trending"/></svg>Analytics</div>
+          </div>
+        </div>
+      </div>
+      <div class="ia-arrows">
+        <svg width="24" height="24" class="ia-arrow"><use href="#i-arr" transform="rotate(90 12 12)"/></svg>
+        <svg width="24" height="24" class="ia-arrow"><use href="#i-arr" transform="rotate(90 12 12)"/></svg>
+        <svg width="24" height="24" class="ia-arrow"><use href="#i-arr" transform="rotate(90 12 12)"/></svg>
+      </div>
+      <div class="ia-database rv">
+        <div class="ia-db-title">Shared Database</div>
+        <div class="ia-db-desc">Battery inventory · Pricing · Availability · Shop info · All surfaces sync in real-time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER WEBSITE SHOWCASE -->
+<section class="web-sec" id="website">
+  <div class="max">
+    <div class="rv">
+      <div class="web-eyebrow-row">
+        <div class="web-tag">SURFACE 01</div>
+        <div class="web-meta">For <strong>Rajesh and his kind</strong> · the surface that answers before he calls</div>
+      </div>
+      <h2 class="sh">The customer website —<br>where <em style="font-style:italic;color:var(--green)">trust is built</em> in seconds</h2>
+      <p class="sp">Most local battery shops don't have a website. The ones that do treat it like a phonebook listing — name, address, phone number. SRB needed something that did real work: help a customer find the exact battery for their car, surface prices transparently, and route them to WhatsApp or a phone call without friction. Built mobile-first, because nobody is researching batteries on a laptop.</p>
+    </div>
+
+    <!-- HERO PAIR: Home + Results, the two most important screens -->
+    <div class="web-hero-pair rv d1">
+      <div class="web-hero-pair-label">CORE FLOW</div>
+      <div class="web-hero-pair-cap">Home → Results</div>
+      <div class="web-hero-phones">
+        <div class="web-phone-wrap">
+          <img src="images/volta-web-home.png" alt="SRB Battery home screen with vehicle finder form">
+          <div class="web-phone-caption">01 · HOME</div>
+        </div>
+        <div class="web-phone-wrap">
+          <img src="images/volta-web-results.png" alt="SRB Battery results screen showing matched batteries">
+          <div class="web-phone-caption">02 · RESULTS</div>
+        </div>
+      </div>
+      <div class="web-hero-story">
+        <div class="web-hero-num">THE TWO-STEP PROMISE</div>
+        <h3 class="web-hero-title">Tell us your vehicle. <em>See matching batteries.</em></h3>
+        <p class="web-hero-desc">No registration, no log-in, no detail pages buried two clicks deep. The customer arrives knowing only their car, leaves knowing exactly which battery fits — with prices, warranty, and a WhatsApp button on every option.</p>
+      </div>
+    </div>
+
+    <!-- SUPPORTING: Services screen -->
+    <div class="web-supporting rv">
+      <div class="web-supporting-l">
+        <div class="web-supporting-num">03 · BEYOND THE SALE</div>
+        <h3 class="web-supporting-title">More than <em>just batteries</em></h3>
+        <p class="web-supporting-desc">SRB doesn't just sell batteries — they fit them, jumpstart cars, run free health checks, and top up distilled water. The services page surfaces what was previously locked inside the shop owner's head and word-of-mouth.</p>
+        <div class="web-supporting-list">
+          <div class="web-supporting-li">
+            <div class="web-supporting-li-icon"></div>
+            <div><strong>Free vs. charged services, marked upfront</strong><span>"Fitment: Free (only for batteries purchased from us)" — no hidden conditions surfaced at checkout.</span></div>
+          </div>
+          <div class="web-supporting-li">
+            <div class="web-supporting-li-icon"></div>
+            <div><strong>Emergency CTA always visible</strong><span>The dark "Car won't start?" card sits at the bottom of the screen, catching the panicker before she leaves.</span></div>
+          </div>
+          <div class="web-supporting-li">
+            <div class="web-supporting-li-icon"></div>
+            <div><strong>Persistent bottom nav</strong><span>Home, Services, WhatsApp, Emergency, Find us — five taps, all the customer ever needs.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="web-supporting-r">
+        <img src="images/volta-web-services.png" alt="SRB Battery services page with fitment, jumpstart, and emergency CTA">
+      </div>
+    </div>
+
+    <!-- DESIGN DECISIONS -->
+    <div class="web-decisions rv">
+      <div class="web-decisions-l">
+        <h3>The <em>four bets</em> that shaped this surface</h3>
+        <p>Designing for a local shop's customer is different from designing for a SaaS product. The interface had to feel familiar, trustworthy, and forgiving — for users who might be doing this once every five years.</p>
+      </div>
+      <div class="web-decisions-r">
+        <div class="web-decision">
+          <div class="web-decision-h">Vehicle-first, not brand-first</div>
+          <div class="web-decision-d">Customers know their car. They don't know batteries. The funnel starts where their certainty lives.</div>
+        </div>
+        <div class="web-decision">
+          <div class="web-decision-h">WhatsApp as an exit, not a fallback</div>
+          <div class="web-decision-d">Every screen has a green CTA to chat — because some customers will always prefer to talk, and that's fine.</div>
+        </div>
+        <div class="web-decision">
+          <div class="web-decision-h">Price upfront, no "request a quote"</div>
+          <div class="web-decision-d">Hidden prices break trust before the customer even reaches the shop. Every number is GST-inclusive.</div>
+        </div>
+        <div class="web-decision">
+          <div class="web-decision-h">Emergency, always one tap away</div>
+          <div class="web-decision-d">The dark "Car won't start?" card and bottom-nav Emergency tab catch Priya before she gives up and Googles.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIFESTYLE PAIR -->
+    <div class="web-lifestyle rv">
+      <div class="web-lifestyle-card">
+        <img src="images/volta-web-hero.png" alt="SRB Battery filter screen on an art-directed colored background">
+        <div class="web-lifestyle-label">ART DIRECTION</div>
+        <div class="web-lifestyle-cap">Filtering and sorting designed to feel like Amazon or Flipkart — patterns customers already know, applied to a category they don't.</div>
+      </div>
+      <div class="web-lifestyle-card">
+        <img src="images/volta-web-hands.png" alt="SRB Battery filter screen in a customer's hands">
+        <div class="web-lifestyle-label">IN HAND</div>
+        <div class="web-lifestyle-cap">Every CTA sits in the thumb zone. The whole flow finishes before a traffic light turns green.</div>
+      </div>
+    </div>
+
+    <div class="web-closer rv">
+      <div class="web-closer-ey">IN CONTEXT</div>
+      <h3 class="web-closer-h">Designed for one hand,<br><em>one minute</em>, one decision.</h3>
+      <p class="web-closer-d">No registration. No log-in. No friction between curiosity and contact. Just a customer, their vehicle, and the right battery — in under a minute.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHATSAPP AI SHOWCASE -->
+<section class="wa-sec" id="whatsapp">
+  <div class="max">
+    <div class="rv">
+      <div class="wa-eyebrow-row">
+        <div class="wa-tag">SURFACE 02</div>
+        <div class="wa-meta">For <strong>everyone in a hurry</strong> · the surface that handles 78% of enquiries on its own</div>
+      </div>
+      <h2 class="sh">WhatsApp AI —<br>where the <em style="font-style:italic;color:#075E54">customer already is</em></h2>
+      <p class="sp">Asking someone to download an app is friction. Asking them to open WhatsApp is muscle memory. So the AI lives where 400 million Indians already chat — speaks four languages, plays a voice greeting for non-readers, and lets users press a number to choose their language.</p>
+    </div>
+
+    <!-- HERO PAIR: annotated welcome + design rationale -->
+    <div class="wa-hero rv d1">
+      <div class="wa-hero-l">
+        <div class="wa-hero-label">ANNOTATED · LANGUAGE PICKER</div>
+        <img src="images/volta-wa-screen-1.png" alt="WhatsApp welcome flow with voice greeting and numbered language picker">
+      </div>
+      <div class="wa-hero-r">
+        <div class="wa-hero-num">01 · FIRST CONTACT</div>
+        <h3 class="wa-hero-title">A voice greeting, <em>before words</em></h3>
+        <p class="wa-hero-desc">Many of Sri Raghavendra's customers don't read English — and some don't read at all. So the chat opens with an auto-play voice message in Kannada, followed by a numbered language picker. The voice note says the numbers aloud (1, 2, 3, 4) — anyone who hears it can press the right button without reading.</p>
+        <div class="wa-decisions">
+          <div class="wa-decision">
+            <div class="wa-decision-num">i.</div>
+            <div><strong>Voice greeting auto-plays</strong><span>Solves for low-literacy users on first contact — no app to learn, no text to parse.</span></div>
+          </div>
+          <div class="wa-decision">
+            <div class="wa-decision-num">ii.</div>
+            <div><strong>Numbers tied to voice prompts</strong><span>The voice note says "press 1 for Kannada" — making the picker accessible to anyone who can hear and tap.</span></div>
+          </div>
+          <div class="wa-decision">
+            <div class="wa-decision-num">iii.</div>
+            <div><strong>Sticky language choice</strong><span>Once chosen, the bot never asks again. Subsequent visits open in the right language.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEVICE VIEW: clean rendering on real phone -->
+    <div class="wa-device rv">
+      <div class="wa-device-l">
+        <div class="wa-quote-cap">02 · REAL DEVICE</div>
+        <div class="wa-quote">"We will remember this choice. <em>You won't be asked again.</em>"</div>
+        <p class="wa-hero-desc">The blue system pill borrows WhatsApp's own pattern for trust messages — the same styling used for end-to-end encryption notices. When users see it, they recognize it: this is the platform speaking, not the brand.</p>
+        <p class="wa-hero-desc" style="margin-top:14px"><strong style="color:var(--ink);font-weight:500">After picking Hindi, the bot replies in Hindi.</strong> The user types हिंदी to confirm — no retraining needed, no English fallback, no "are you sure?" friction.</p>
+      </div>
+      <div class="wa-device-r">
+        <img src="images/volta-wa-screen-2.png" alt="WhatsApp chat on iPhone showing language picker and Hindi confirmation">
+      </div>
+    </div>
+
+    <!-- SCENARIOS: side-by-side comparison -->
+    <div class="wa-scenarios rv">
+      <div class="wa-scenarios-head">
+        <div class="wa-scenarios-l">
+          <div class="wa-scenarios-num">03 · CONVERSATIONAL AI</div>
+          <h3 class="wa-scenarios-title">Two paths, <em>same destination</em></h3>
+          <p class="wa-scenarios-desc">A customer who knows their battery brand and a customer who doesn't shouldn't meet the same form. The AI branches: tap a brand from the list, or send a photo and let computer vision do the work. Same outcome — battery identified, ready to quote.</p>
+        </div>
+        <div class="wa-scenarios-tag">DESIGN BET</div>
+      </div>
+      <div class="wa-scenarios-img">
+        <img src="images/volta-wa-screen-3.png" alt="Two side-by-side WhatsApp scenarios: user knows brand vs user uploads photo">
+      </div>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="wa-stats rv">
+      <div class="wa-stats-ey">WHY WHATSAPP</div>
+      <h3 class="wa-stats-h">An app the customer never had to download. A language they never had to translate to. <em>A button they could press just by hearing.</em></h3>
+      <div class="wa-stats-grid">
+        <div>
+          <div class="wa-stat-num">4</div>
+          <div class="wa-stat-lbl">Languages</div>
+          <div class="wa-stat-desc">EN · KN · HI · TA — covers ~96% of Bangalore battery customers.</div>
+        </div>
+        <div>
+          <div class="wa-stat-num">78%</div>
+          <div class="wa-stat-lbl">Auto-handled</div>
+          <div class="wa-stat-desc">Of all enquiries resolved without involving the shop owner.</div>
+        </div>
+        <div>
+          <div class="wa-stat-num">~1m</div>
+          <div class="wa-stat-lbl">Median reply</div>
+          <div class="wa-stat-desc">From first message to identified product or service.</div>
+        </div>
+        <div>
+          <div class="wa-stat-num">0</div>
+          <div class="wa-stat-lbl">Downloads</div>
+          <div class="wa-stat-desc">No app to install. No account to make. Just a chat.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN TOOL SHOWCASE -->
+<section class="admin-sec" id="admin">
+  <div class="max">
+    <div class="rv">
+      <div class="admin-eyebrow-row">
+        <div class="admin-tag">SURFACE 03</div>
+        <div class="admin-meta">For the <strong>Shop Owner</strong> · the surface that powers the other two</div>
+      </div>
+      <h2 class="sh">The admin tool —<br>where <em style="font-style:italic;color:var(--green)">one edit</em> reaches everywhere</h2>
+      <p class="sp">The shop owner is the only admin user. He doesn't read English fluently, doesn't have time for training, and updates prices between customer calls. So the admin tool had to feel less like a CMS and more like a control panel — every action visible, every change traceable, nothing buried in nested menus.</p>
+    </div>
+
+    <!-- HERO: Dashboard -->
+    <div class="admin-hero rv d1">
+      <div class="admin-hero-label">PRIMARY VIEW · DASHBOARD</div>
+      <div class="admin-screen-wrap">
+        <img src="images/volta-admin-dashboard.png" alt="Volta Admin Dashboard">
+      </div>
+      <div class="admin-caption">
+        <div class="admin-cap-l">
+          <div class="admin-cap-num">01 · DASHBOARD</div>
+          <div class="admin-cap-title">Today at <em>a glance</em></div>
+          <div class="admin-cap-desc">The owner opens the admin tool maybe four times a day. So the dashboard has to answer his only three questions in one screen: <em>What's happening right now? What needs me? What did the AI handle without me?</em></div>
+        </div>
+        <div class="admin-cap-r">
+          <div class="admin-decision"><div class="admin-decision-dot"></div><div><strong>Live emergencies surfaced first</strong> — the dark callout makes them impossible to miss</div></div>
+          <div class="admin-decision"><div class="admin-decision-dot"></div><div><strong>Multilingual queries shown in original script</strong> — Kannada, Hindi, Tamil — so the owner sees what customers actually wrote</div></div>
+          <div class="admin-decision"><div class="admin-decision-dot"></div><div><strong>Calls-saved as the headline metric</strong> — the one number that justifies the whole product</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID: 3 supporting screens -->
+    <div class="admin-grid">
+      <div class="admin-card rv">
+        <div class="admin-card-label">INVENTORY & PRICING</div>
+        <div class="admin-screen-wrap">
+          <img src="images/volta-admin-inventory.png" alt="Volta Admin Inventory & Pricing">
+        </div>
+        <div class="admin-card-foot">
+          <div class="admin-card-l">
+            <div class="admin-card-num">02 · CATALOG</div>
+            <div class="admin-card-title">Edit once. <em>Sync everywhere.</em></div>
+            <div class="admin-card-desc">Inline price editing with a persistent save bar that names the consequence — "syncs to website and WhatsApp on save." No dialog buried two clicks deep.</div>
+          </div>
+          <div class="admin-card-tag">DESIGN BET</div>
+        </div>
+      </div>
+
+      <div class="admin-card rv d1">
+        <div class="admin-card-label">ENQUIRIES & LEADS</div>
+        <div class="admin-screen-wrap">
+          <img src="images/volta-admin-enquiries.png" alt="Volta Admin Enquiries & Leads">
+        </div>
+        <div class="admin-card-foot">
+          <div class="admin-card-l">
+            <div class="admin-card-num">03 · INBOX</div>
+            <div class="admin-card-title">The <em>human</em> moments</div>
+            <div class="admin-card-desc">AI handles 78% silently. The owner sees only what needs him — with full context already attached. Emergencies pinned to the top with distance and live status.</div>
+          </div>
+          <div class="admin-card-tag">AI-FIRST</div>
+        </div>
+      </div>
+
+      <div class="admin-card wide rv d2">
+        <div class="admin-card-label">ANALYTICS</div>
+        <div class="admin-screen-wrap">
+          <img src="images/volta-admin-analytics.png" alt="Volta Admin Analytics">
+        </div>
+        <div class="admin-card-foot">
+          <div class="admin-card-l">
+            <div class="admin-card-num">04 · INSIGHTS</div>
+            <div class="admin-card-title">Numbers a <em>shop owner</em> actually wants</div>
+            <div class="admin-card-desc">Not vanity charts. Calls saved, response time, language breakdown, top-selling SKUs. Each metric maps to a decision he can make next week — order more stock, hire Tamil support, push Saturday inventory.</div>
+          </div>
+          <div class="admin-card-tag">JOBS-TO-BE-DONE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN RATIONALE -->
+    <div class="admin-rationale rv">
+      <div class="admin-rationale-ey">DESIGN RATIONALE</div>
+      <h3 class="admin-rationale-h">Most admin tools are built for analysts. <em>This one was built for a man who answers his own phone.</em></h3>
+      <p class="sp" style="color:rgba(255,255,255,.55);max-width:780px;position:relative;z-index:1">Every decision — the dark sidebar that recedes, the serif display type that signals authority not enterprise-blandness, the green that ties back to the WhatsApp brand, the single sticky save bar — comes from one constraint: the owner has 30 seconds between customers.</p>
+
+      <div class="admin-rationale-grid">
+        <div>
+          <div class="admin-r-num">3</div>
+          <div class="admin-r-label">Clicks to update a price</div>
+          <div class="admin-r-desc">From "I need to change something" to "it's live everywhere" — open inventory, edit cell, save & sync.</div>
+        </div>
+        <div>
+          <div class="admin-r-num">0</div>
+          <div class="admin-r-label">Settings menus to learn</div>
+          <div class="admin-r-desc">No tabs within tabs. Every screen does one job, and the next action is always visible.</div>
+        </div>
+        <div>
+          <div class="admin-r-num">78%</div>
+          <div class="admin-r-label">Of enquiries auto-handled</div>
+          <div class="admin-r-desc">The admin tool exists for the 22% that need a human — and protects the owner from the rest.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL EXAMPLES WITH IMAGES -->
+<section class="sec" style="padding-top:80px;padding-bottom:80px">
+  <div class="max">
+    <div class="rv" style="margin-bottom:64px">
+      <div class="ey">Service Portfolio</div>
+      <h2 class="sh">Professional battery services</h2>
+      <p class="sp">From installation to emergency support, every service is designed for reliability and customer convenience.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card rv">
+        <div class="img-wrap">
+          <img src="images/unnamed.webp" alt="Battery installation service">
+        </div>
+        <div class="service-content">
+          <h3 class="service-title">Installation & Repair</h3>
+          <p class="service-desc">Professional battery installation, on-site repairs, and emergency jumpstart support with transparent pricing.</p>
+        </div>
+      </div>
+
+      <div class="service-card rv d1">
+        <div class="img-wrap">
+          <img src="images/automobile-part-repair-and-services-for-commercial-2229194016-mnds2uut.avif" alt="Commercial battery services">
+        </div>
+        <div class="service-content">
+          <h3 class="service-title">Commercial Fleet Services</h3>
+          <p class="service-desc">Dedicated support for commercial vehicles, including bulk orders, fleet maintenance contracts, and priority response.</p>
+        </div>
+      </div>
+
+      <div class="service-card rv d2">
+        <div class="img-wrap">
+          <img src="images/automobile-battery-charging-services-for-commercial-2229194244-vr6wyokr.avif" alt="Battery charging services">
+        </div>
+        <div class="service-content">
+          <h3 class="service-title">Testing & Diagnostics</h3>
+          <p class="service-desc">Complete battery health diagnostics, professional charging, and performance testing to extend battery life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES VOLTA DIFFERENT - UPDATED -->
+<section class="sec" style="background:var(--bg3)">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">Differentiators</div>
+      <h2 class="sh">What makes Volta different</h2>
+      <p class="sp">Most battery retailers still rely on phone calls or have basic e-commerce websites. Volta was designed from the ground up to serve diverse user needs with technology that actually helps.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff rv">
+        <div class="diff-label">Other battery shops</div>
+        <div class="diff-t">List all brands alphabetically</div>
+        <div class="diff-d">Generic product catalogs with no personalization or guidance. Customers must know exactly what they're looking for.</div>
+      </div>
+      <div class="diff rv d1">
+        <div class="diff-label">Volta approach</div>
+        <div class="diff-t">Ask what vehicle you drive</div>
+        <div class="diff-d">Vehicle-first battery finder that shows compatible options from any brand in the inventory, with clear comparisons and recommendations.</div>
+        <div class="diff-highlight">✓ Brand-agnostic system supports unlimited manufacturers</div>
+      </div>
+
+      <div class="diff rv">
+        <div class="diff-label">Other battery shops</div>
+        <div class="diff-t">English-only websites</div>
+        <div class="diff-d">Exclude customers who don't speak English fluently. No support for regional languages.</div>
+      </div>
+      <div class="diff rv d1">
+        <div class="diff-label">Volta approach</div>
+        <div class="diff-t">4 languages with context memory</div>
+        <div class="diff-d">Kannada, Hindi, Tamil, English. WhatsApp AI remembers language preference across sessions.</div>
+        <div class="diff-highlight">✓ Designed for Bangalore's multilingual customer base</div>
+      </div>
+
+      <div class="diff rv">
+        <div class="diff-label">Other battery shops</div>
+        <div class="diff-t">"Call us for emergencies"</div>
+        <div class="diff-d">No digital emergency support. Customers must find phone numbers and explain situations verbally.</div>
+      </div>
+      <div class="diff rv d1">
+        <div class="diff-label">Volta approach</div>
+        <div class="diff-t">One-tap emergency mode</div>
+        <div class="diff-d">Dedicated emergency flow with location auto-detect, arrival time estimates, and real-time tracking.</div>
+        <div class="diff-highlight">✓ Reduces emergency response coordination from 10+ min to under 2 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI SECTION - NEW -->
+<section class="roi-sec">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">Business Impact</div>
+      <h2 class="sh">Projected ROI and business transformation</h2>
+      <p class="sp">Based on digital transformation research across small businesses and manufacturing sectors, similar-scale implementations achieve measurable returns within 12-18 months. Here's what Volta is designed to deliver:</p>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-card rv">
+        <div class="roi-metric">40%</div>
+        <div class="roi-label">Reduction in phone support time</div>
+        <div class="roi-desc">WhatsApp AI and self-service website handle repetitive queries, freeing the owner to focus on in-store customers and complex cases.</div>
+      </div>
+      <div class="roi-card rv d1">
+        <div class="roi-metric">24/7</div>
+        <div class="roi-label">Customer availability</div>
+        <div class="roi-desc">Digital surfaces enable customers to check prices, browse inventory, and book emergency services outside business hours — capturing previously lost leads.</div>
+      </div>
+      <div class="roi-card rv d2">
+        <div class="roi-metric">60%</div>
+        <div class="roi-label">Faster price updates</div>
+        <div class="roi-desc">Centralized admin dashboard syncs pricing across all surfaces instantly, eliminating manual updates and reducing errors.</div>
+      </div>
+      <div class="roi-card rv">
+        <div class="roi-metric">3x</div>
+        <div class="roi-label">Emergency response efficiency</div>
+        <div class="roi-desc">Structured emergency flow with automated location detection reduces coordination time from 10+ minutes to under 2 minutes per case.</div>
+      </div>
+      <div class="roi-card rv d1">
+        <div class="roi-metric">30%</div>
+        <div class="roi-label">Expected revenue increase</div>
+        <div class="roi-desc">Based on small business digital transformation benchmarks, improved customer experience and 24/7 availability typically drive 25-35% revenue growth within 12-18 months.</div>
+      </div>
+      <div class="roi-card rv d2">
+        <div class="roi-metric">12-18mo</div>
+        <div class="roi-label">ROI timeline</div>
+        <div class="roi-desc">Industry research shows small businesses (under 100 employees) achieve positive ROI within 12-18 months, with 2.7x higher success rates than enterprise transformations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section class="phase-sec" id="phases">
+  <div class="max">
+    <div class="rv">
+      <div class="ey">Product Vision</div>
+      <h2 class="sh">Built for one shop today.<br>Designed for every street tomorrow.</h2>
+      <p class="sp">Phase 1 gives one shop owner a complete digital presence. Phase 2 turns that into a hyperlocal commercial platform — connecting customers to verified battery dealers across any city, in their language, in their moment of need.</p>
+    </div>
+    <div class="phase-grid">
+      <div class="phase p1 rv">
+        <div class="phase-num">1</div>
+        <div class="phase-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Phase 1 · Current</div>
+        <div class="phase-title">One shop.<br>Complete digital presence.</div>
+        <div class="phase-desc">Built for a single battery distributor in Jayanagar. The owner is the only admin user. All three surfaces serve his customers and replace his phone calls.</div>
+        <div class="phase-items">
+          <div class="pi"><svg width="14" height="14"><use href="#i-globe"/></svg>Customer website — battery finder, services, find us</div>
+          <div class="pi"><svg width="14" height="14"><use href="#i-msg"/></svg>WhatsApp AI — multilingual, photo detection, emergency</div>
+          <div class="pi"><svg width="14" height="14"><use href="#i-lock"/></svg>Admin tool — price editor, enquiry log, lead tracking</div>
+          <div class="pi"><svg width="14" height="14"><use href="#i-db"/></svg>One database — price changes sync across all surfaces</div>
+        </div>
+        <div class="phase-status"><svg width="12" height="12"><use href="#i-check"/></svg>Designed · Ready for development</div>
+      </div>
+      <div class="phase p2 rv d1">
+        <div class="phase-num">2</div>
+        <div class="phase-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Phase 2 · Hyperlocal commercial</div>
+        <div class="phase-title">Any city.<br>Every battery shop on the map.</div>
+        <div class="phase-desc">Volta becomes a hyperlocal discovery platform. Customers search for a battery — they see nearby verified dealers with real-time pricing, availability, and ratings. Think Dunzo for batteries. Not just one shop. Every shop in the neighbourhood.</div>
+        <div class="phase-items">
+          <div class="pi"><svg width="14" height="14"><use href="#i-map"/></svg>Shop discovery — nearest verified dealer, live availability</div>
+          <div class="pi"><svg width="14" height="14"><use href="#i-star"/></svg>Ratings and trust — compare shops, not just batteries</div>
+          <div class="pi"><svg width="14" height="14"><use href="#i-trending"/></svg>Multi-shop admin — each owner manages their own inventory</div>
+          <div class="pi"><svg width="14" height="14"><use href="#i-zap"/></svg>Emergency network — nearest jumpstart partner dispatched</div>
+          <div class="pi"><svg width="14" height="14"><use href="#i-users"/></svg>Dealer onboarding — verified shops join as registered partners</div>
+        </div>
+        <div class="phase-status"><svg width="12" height="12"><use href="#i-arr"/></svg>Concept stage · Not yet designed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="proc-sec">
+  <div class="max rv">
+    <div class="ey">Design Process</div>
+    <h2 class="sh">Research first. Always.</h2>
+    <p class="sp">Every decision traces back to a real user insight or business constraint. Nothing was designed without first understanding who needed it and why — and nothing was assumed.</p>
+  </div>
+  <div class="max">
+    <div class="proc-steps">
+      <div class="ps on rv"><div class="ps-dot"><svg><use href="#i-search"/></svg></div><div class="ps-num">01</div><div class="ps-t">Research</div><div class="ps-d">Primary: Shop owner interviews, live call observation, customer intercepts. Secondary: Industry reports, digital transformation benchmarks, competitive analysis. 4 distinct user types identified.</div></div>
+      <div class="ps on rv d1"><div class="ps-dot"><svg><use href="#i-layers"/></svg></div><div class="ps-num">02</div><div class="ps-t">IA + Flows</div><div class="ps-d">User-first information architecture. Three surfaces, one database. Every interaction and edge case mapped before wireframing began.</div></div>
+      <div class="ps on rv d2"><div class="ps-dot"><svg><use href="#i-edit"/></svg></div><div class="ps-num">03</div><div class="ps-t">Wireframes</div><div class="ps-d">Core screens wireframed for website, WhatsApp flows, and admin dashboard. All interactions, filter states, and conversational edge cases designed.</div></div>
+      <div class="ps on rv"><div class="ps-dot"><svg><use href="#i-pal"/></svg></div><div class="ps-num">04</div><div class="ps-t">UI Design</div><div class="ps-d">DM Sans design system. Mobile-first approach. Consistent visual language across all three surfaces with accessibility considerations.</div></div>
+      <div class="ps on rv d1"><div class="ps-dot"><svg><use href="#i-msg"/></svg></div><div class="ps-num">05</div><div class="ps-t">Conversation Design</div><div class="ps-d">WhatsApp flows designed in 4 languages. Conversation trees handle ambiguous input, urgency detection, photo analysis, and human escalation paths.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNINGS -->
+<section class="learn-sec" id="learnings">
+  <div class="max">
+    <div class="rv"><div class="ey">Reflections</div><h2 class="sh">What Volta taught me</h2></div>
+    <div class="learn-grid">
+      <div class="lc rv"><svg class="lc-ico"><use href="#i-puz"/></svg><div class="lc-t">Design for the majority, not the average</div><div class="lc-d">Four fundamentally different users. One compromised product would have served none of them. Separate surfaces, each purpose-built — not one product stretched thin.</div></div>
+      <div class="lc rv d1"><svg class="lc-ico"><use href="#i-type"/></svg><div class="lc-t">Language is not accessibility — it is the UX</div><div class="lc-d">Designing in Kannada wasn't an add-on. It was the primary experience for the majority of customers. Every label, CTA, and error message had to work in four languages.</div></div>
+      <div class="lc rv d2"><svg class="lc-ico"><use href="#i-zap"/></svg><div class="lc-t">Emergency is a separate design problem</div><div class="lc-d">A customer whose car won't start doesn't need a battery finder. They need a phone number, a location check, and a confirmation that someone is coming. That is a completely different UX.</div></div>
+      <div class="lc rv"><svg class="lc-ico"><use href="#i-db"/></svg><div class="lc-t">One database, three surfaces</div><div class="lc-d">The most important system decision. Owner edits a price once — it updates everywhere. Engineer builds the logic once. The architecture unlocks Phase 2 without rebuilding from scratch.</div></div>
+      <div class="lc rv d1"><svg class="lc-ico"><use href="#i-bar"/></svg><div class="lc-t">Benchmark against the real competitor</div><div class="lc-d">The real competitor isn't Amaron's website. It's the phone call. Every design decision was measured against one question: is this faster and clearer than just calling?</div></div>
+      <div class="lc rv d2"><svg class="lc-ico"><use href="#i-heart"/></svg><div class="lc-t">AI should guide, not replace</div><div class="lc-d">Traditional chatbots fail with ambiguity. Volta's AI understands incomplete input, adapts tone based on urgency, and always offers a path to a human. Knowing when not to automate matters.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="ft">Let's work<br><em>together.</em></div>
+    <p class="fd">I'm Rashmi B S, a UX/UI designer based in Bangalore. I design products that work for real people — in their language, in their moment of need. Currently looking for full-time opportunities.</p>
+    <p class="fc">© 2026 Rashmi B S · Volta Battery · UX Case Study</p>
+  </div>
+  <div class="flinks">
+    <a href="#" class="fl">Portfolio <svg><use href="#i-arr"/></svg></a>
+    <a href="#" class="fl">LinkedIn <svg><use href="#i-arr"/></svg></a>
+    <a href="mailto:rashmi@email.com" class="fl">rashmi@email.com <svg><use href="#i-arr"/></svg></a>
+  </div>
+</footer>
+
+<script>
+const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:0.07});
+document.querySelectorAll('.rv').forEach(el=>o.observe(el));
+</script>
+</body>
+</html>
