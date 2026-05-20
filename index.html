@@ -26,8 +26,8 @@ html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-weight:400}
 ::selection{background:#FFE066;color:var(--ink)}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;transition:background .35s ease,backdrop-filter .35s ease,box-shadow .35s ease,border-color .35s ease;background:transparent;border-bottom:1px solid transparent}
-nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 20px rgba(0,0,0,0.04);border-bottom-color:rgba(26,26,26,0.06)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:flex-end;padding:18px 40px;transition:background .35s ease,backdrop-filter .35s ease,box-shadow .35s ease;background:transparent}
+nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 20px rgba(0,0,0,0.04)}
 .nl-logo{position:relative;width:54px;height:54px;display:flex;align-items:center;justify-content:center;text-decoration:none}
 .nl-logo svg{width:100%;height:100%}
 
@@ -56,7 +56,7 @@ nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webki
 .brushed{position:relative;display:inline-block;color:#fff;padding:0 0.14em 0 0.12em;z-index:1;font-family:var(--brush-font);font-weight:400;white-space:nowrap}
 .brushed-bg{position:absolute;inset:-0.18em -0.05em -0.18em -0.05em;width:calc(100% + 0.1em);height:calc(100% + 0.36em);z-index:-1;pointer-events:none}
 
-.hero-explain{margin-top:20px;max-width:580px;font-size:clamp(17px,1.4vw,20px);font-weight:400;line-height:1.4;color:var(--ink2);letter-spacing:-0.005em;padding-left:6px;border-left:3px solid var(--brush);padding:6px 0 6px 18px}
+.hero-explain{margin-top:20px;max-width:580px;font-size:clamp(17px,1.4vw,20px);font-weight:400;line-height:1.4;color:var(--ink2);letter-spacing:-0.005em;text-align:center;margin-left:auto;margin-right:auto}
 .hero-explain strong{font-weight:600;color:var(--ink)}
 
 .eyes{display:inline-block;width:0.65em;height:0.34em;vertical-align:middle;margin-left:0.15em}
@@ -167,11 +167,11 @@ nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webki
 .proj-doodle svg{display:block;margin:6px auto 0}
 .proj-doodle.d1{top:24px;left:24px;transform:rotate(-6deg)}
 .proj-doodle.d1 svg{width:60px;height:36px}
-.proj-doodle.d2{bottom:24px;right:24px;transform:rotate(4deg);color:#fff}
+.proj-doodle.d2{bottom:24px;right:24px;transform:rotate(4deg);color:#1A1A1A}
 .proj-doodle.d2 svg{width:50px;height:30px}
 .proj-doodle.d3{top:24px;right:24px;transform:rotate(4deg)}
 .proj-doodle.d3 svg{width:50px;height:30px}
-.proj-doodle.d4{bottom:24px;left:24px;transform:rotate(-6deg);color:#fff}
+.proj-doodle.d4{bottom:24px;left:24px;transform:rotate(-6deg);color:#1A1A1A}
 .proj-doodle.d4 svg{width:60px;height:36px}
 
 .cv-row{display:flex;align-items:center;gap:5px;padding:6px;background:#F0FDF4;border-radius:6px;margin:4px 0}
@@ -308,15 +308,6 @@ nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webki
 <body>
 
 <nav>
-  <a class="nl-logo" href="#top" aria-label="Rashmi B S">
-    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M10 46 Q9 32 11 18 Q11 14 14 14 Q24 14 25 20 Q26 27 17 28 L13 28 Q22 28 26 38 Q28 42 30 46"/>
-        <circle cx="33" cy="48" r="1" fill="#1A1A1A"/>
-        <path d="M38 12 Q44 14 48 18" stroke-width="1.5"/>
-      </g>
-    </svg>
-  </a>
   <div class="nm">
     <a class="pill" data-section="work" href="#work">
       <svg class="pill-bg" viewBox="0 0 140 48" preserveAspectRatio="none"><path d="M 24 5 Q 10 6, 7 18 Q 5 28, 8 38 Q 14 44, 26 44 L 116 43 Q 130 44, 134 32 Q 136 20, 132 10 Q 124 5, 114 5 Z"/></svg>
@@ -388,21 +379,6 @@ nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webki
 
   <p class="hero-explain">Nine years hiring engineers taught me how products get built. Now I'm designing them.</p>
 
-  <div class="hero-note">
-    <span class="hero-note-swirl">
-      <svg width="34" height="20" viewBox="0 0 34 20" fill="none">
-        <path d="M2 10 Q8 2 16 8 Q24 14 32 6" stroke="#8A8A8A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      </svg>
-    </span>
-    Now I do it on purpose<br>at
-    <div class="hero-note-line">
-      <span class="hero-note-logo">
-        <span style="font-family:var(--sans);font-weight:600;font-size:13px;color:var(--ink)">iWantTFC</span>
-      </span>
-      <span style="font-family:var(--hand);font-size:20px">— a streaming platform</span>
-    </div>
-    <span style="font-family:var(--hand);display:block;font-size:20px;margin-top:2px">designed for <span class="em">7M+ Filipinos worldwide.</span></span>
-  </div>
 
   <div class="avatar-wrap">
     <div class="avatar-cta">
@@ -484,11 +460,11 @@ nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webki
           </svg>
           <span class="read-pill-tag">5 min read</span>
         </div>
-        <img class="proj-photo" src="images/volta-battery.webp" alt="">
+        <img class="proj-photo" src="images/battery1.gif" alt="" style="object-fit:cover">
         <div class="proj-doodle d2">
           built for trust
           <svg viewBox="0 0 50 30" fill="none">
-            <path d="M4 24 Q14 6 44 12 M40 16 L44 12 L40 7" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <path d="M4 24 Q14 6 44 12 M40 16 L44 12 L40 7" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" fill="none"/>
           </svg>
         </div>
       </div>
@@ -552,7 +528,7 @@ nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webki
           </svg>
           <span class="read-pill-tag">3 min read</span>
         </div>
-        <img class="proj-photo" src="images/animation1.gif" alt="Candidate Experience case study" style="object-fit:fill">
+        <img class="proj-photo" src="images/animation1.gif" alt="Candidate Experience case study" style="object-fit:cover">
         <div class="proj-doodle d2">
           APAC-wide
           <svg viewBox="0 0 50 30" fill="none">
@@ -563,58 +539,7 @@ nav.scrolled{background:rgba(250,247,239,0.75);backdrop-filter:blur(14px);-webki
       </div>
     </a>
 
-    <a class="proj image-left" href="mailto:rashmidesignhub@gmail.com?subject=APAC%20Wellbeing">
-      <div class="proj-text">
-      <h3 class="proj-title">I designed the APAC Wellbeing program at Google — reaching 7,000+ Googlers across four pillars.</h3>
-      <div class="proj-meta">2022–2025 | Google · NDA · Web, Newsletter, Program Lead</div>
-      </div>
-      <div class="proj-image-wrap">
-        <div class="proj-sparkles" aria-hidden="true">
-          <div class="sp s1"><svg viewBox="0 0 20 20" fill="none"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="#D4451E"/></svg></div>
-          <div class="sp s2"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2 L11 9 L18 10 L11 11 L10 18 L9 11 L2 10 L9 9 Z" fill="#D4451E"/></svg></div>
-          <div class="sp s3"><svg viewBox="0 0 20 20" fill="none"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="#D4451E"/></svg></div>
-          <div class="sp s4"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2 L11 9 L18 10 L11 11 L10 18 L9 11 L2 10 L9 9 Z" fill="#D4451E"/></svg></div>
-          <div class="sp s5"><svg viewBox="0 0 20 20" fill="none"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="#D4451E"/></svg></div>
-          <div class="sp s6"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2 L11 9 L18 10 L11 11 L10 18 L9 11 L2 10 L9 9 Z" fill="#D4451E"/></svg></div>
-          <div class="sp s7"><svg viewBox="0 0 20 20" fill="none"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="#D4451E"/></svg></div>
-          <div class="sp s8"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2 L11 9 L18 10 L11 11 L10 18 L9 11 L2 10 L9 9 Z" fill="#D4451E"/></svg></div>
-        </div>
-      <div class="proj-image pi-wb">
-        <div class="read-pill">
-          <svg class="read-pill-cursor" viewBox="0 0 16 18" fill="none">
-            <path d="M2 2 L2 14 L6 11 L9 16 L11 15 L8 10 L13 9 Z" fill="#22B14C" stroke="#fff" stroke-width="0.8"/>
-          </svg>
-          <span class="read-pill-tag">4 min read</span>
-        </div>
-        <div class="pi-phone">
-          <div class="pi-content">
-            <div class="cv-wh">
-              <div class="cv-wh-t">APAC Wellbeing</div>
-              <div class="cv-wh-d">7,000+ Googlers</div>
-            </div>
-            <div class="cv-wh-r">
-              <div class="cv-wh-p">Mental</div>
-              <div class="cv-wh-p">Physical</div>
-            </div>
-            <div class="cv-wh-r">
-              <div class="cv-wh-p">Social</div>
-              <div class="cv-wh-p">Career</div>
-            </div>
-            <div class="cv-wh" style="background:#1A1A1A">
-              <div class="cv-wh-t">This month</div>
-              <div class="cv-wh-d">12 events live</div>
-            </div>
-          </div>
-        </div>
-        <div class="proj-doodle d4">
-          four pillars
-          <svg viewBox="0 0 60 36" fill="none">
-            <path d="M56 6 Q40 28 10 24 M14 28 L10 24 L14 19" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
-      </div>
-      </div>
-    </a>
+    <!-- APAC Wellbeing tile — disabled for now -->
 
   </div>
 </section>
